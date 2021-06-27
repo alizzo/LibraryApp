@@ -12,11 +12,19 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            List(model.books) { r in
-                Text(r.title)
-                
+            VStack(alignment: .center){
+                Text("Library")
+                ScrollView{
+                    ForEach(model.books) { r in
+                        
+                        NavigationLink(
+                            destination: BookDescription(),
+                            label: {
+                        Text(r.title)
+                            })
+                    }
+                }
             }
-       
         }
     }
 }
