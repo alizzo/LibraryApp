@@ -12,16 +12,24 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .center){
-                Text("Library")
-                ScrollView{
-                    ForEach(model.books) { r in
-                        
-                        NavigationLink(
-                            destination: BookDescription(),
-                            label: {
-                        Text(r.title)
-                            })
+            GeometryReader { geo in
+                VStack(alignment: .center){
+                    Text("Library")
+                    ScrollView{
+                        ForEach(model.books) { r in
+                            
+                            NavigationLink(
+                                destination: BookDescription(),
+                                label: {
+                                    ZStack{
+                                        Rectangle()
+                                            .foregroundColor(.gray)
+                                        Text(r.title)
+                                    }
+                                }
+                                )
+                                    
+                        }
                     }
                 }
             }
