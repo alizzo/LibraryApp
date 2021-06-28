@@ -16,15 +16,20 @@ struct ContentView: View {
                 VStack(alignment: .center){
                     Text("Library")
                     ScrollView{
-                        ForEach(model.books) { r in
+                        ForEach(0..<model.books.count) { r in
                             
                             NavigationLink(
                                 destination: BookDescription(),
                                 label: {
                                     ZStack{
-                                        Rectangle()
-                                            .foregroundColor(.gray)
-                                        Text(r.title)
+                                        //Rectangle()
+                                         //   .foregroundColor(.clear)
+                                        Image(model.books[r].image)
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fill)
+                                            .clipped()
+                                     
+                                    //Text(r.title)
                                     }
                                 }
                                 )
@@ -33,7 +38,7 @@ struct ContentView: View {
                     }
                 }
             }
-        }
+        }.environmentObject(BooksModel())
     }
 }
 struct ContentView_Previews: PreviewProvider {

@@ -7,10 +7,13 @@
 import SwiftUI
 
 struct BookDescription: View {
-    @ObservedObject var model = BooksModel()
+    //@ObservedObject var model = BooksModel()
+    @EnvironmentObject var model2:BooksModel
     
     var body: some View {
-        Text("hello").padding()
+        VStack{
+            Text(model2.books[0].title)
+        }
     }
 }
 struct BookDescription_Previews: PreviewProvider {

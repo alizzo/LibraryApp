@@ -14,6 +14,7 @@ class Books: Identifiable, Decodable {
     var author: String
     var isFavourite: Bool
     var currentPage: Int
+    var image : String
     var id : Int
     var content: [String]
     
