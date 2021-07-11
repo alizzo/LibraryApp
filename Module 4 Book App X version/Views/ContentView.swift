@@ -8,7 +8,8 @@
 import SwiftUI
 
 struct ContentView: View {
-    @ObservedObject var model = BooksModel()
+    
+    @EnvironmentObject var model: BooksModel
     
     var body: some View {
         NavigationView {
@@ -16,33 +17,33 @@ struct ContentView: View {
                 VStack(alignment: .center){
                     Text("Library")
                     ScrollView{
-                        ForEach(0..<model.books.count) { r in
+                        LazyVStack{
+                        ForEach(model.books)  { book in
                             
                             NavigationLink(
                                 destination: BookDescription(),
                                 label: {
                                     ZStack{
-                                        //Rectangle()
-                                         //   .foregroundColor(.clear)
-                                        Image(model.books[r].image)
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fill)
-                                            .clipped()
+                                        Rectangle()
+                                            .foregroundColor(.white)
+                                            .cornerRadius(10)
+                                            .shadow(color: .gray, radius: 5, x: -5, y: 5)
+                                        Text(book.title)
                                      
-                                    //Text(r.title)
                                     }
                                 }
                                 )
-                                    
+                        }
                         }
                     }
                 }
             }
-        }.environmentObject(BooksModel())
+        }
     }
 }
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         ContentView()
+            .environmentObject(BooksModel())
     }
 }

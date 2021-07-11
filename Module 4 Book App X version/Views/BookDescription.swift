@@ -8,16 +8,18 @@ import SwiftUI
 
 struct BookDescription: View {
     //@ObservedObject var model = BooksModel()
-    @EnvironmentObject var model2:BooksModel
+    @EnvironmentObject var model:BooksModel
     
     var body: some View {
         VStack{
-            Text(model2.books[0].title)
+            Text(model.books[0].title)
         }
     }
 }
 struct BookDescription_Previews: PreviewProvider {
     static var previews: some View {
+        
+        //let model = BooksModel()
         BookDescription()
     }
 }
