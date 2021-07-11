@@ -9,17 +9,24 @@ import SwiftUI
 struct BookDescription: View {
     //@ObservedObject var model = BooksModel()
     @EnvironmentObject var model:BooksModel
+    @State private  var page = 0
+    var book: Books
     
     var body: some View {
-        VStack{
-            Text(model.books[0].title)
-        }
+        TabView(selection: $page){
+            ForEach(book.content.indices){ index in
+                Text(book.content[index])
+                
+            }
+        }.tabViewStyle(PageTabViewStyle())
     }
 }
+
 struct BookDescription_Previews: PreviewProvider {
     static var previews: some View {
         
         //let model = BooksModel()
-        BookDescription()
+        BookDescription(book: Books())
+            .environmentObject(BooksModel())
     }
 }

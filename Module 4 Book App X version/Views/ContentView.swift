@@ -15,27 +15,34 @@ struct ContentView: View {
         NavigationView {
             GeometryReader { geo in
                 VStack(alignment: .center){
-                    Text("Library")
                     ScrollView{
-                        LazyVStack{
+                        LazyVStack(alignment: .leading, spacing: 30){
                         ForEach(model.books)  { book in
                             
-                            NavigationLink(
-                                destination: BookDescription(),
-                                label: {
+                            NavigationLink(destination: BookDescription(book : book)){
                                     ZStack{
                                         Rectangle()
                                             .foregroundColor(.white)
                                             .cornerRadius(10)
                                             .shadow(color: .gray, radius: 5, x: -5, y: 5)
-                                        Text(book.title)
+                                        VStack{
+                                            Text(book.title).bold()
+                                        
+                                        Text(book.author)
+                                            .italic()
+                                        
+                                        Image("cover\(book.id)")
+                                            .resizable()
+                                            .scaledToFit()
+                                            
+                                        }.padding().accentColor(.black)
                                      
-                                    }
+                                    }  .padding([.leading, .trailing], 20)
                                 }
-                                )
+                                
                         }
                         }
-                    }
+                    }.navigationTitle("My Library")
                 }
             }
         }
